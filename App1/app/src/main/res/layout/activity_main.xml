@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:ems="12"
         android:inputType="text"
-        android:hint="@string/enter_name"/>
+        android:hint="@string/enter_name"
+        tools:ignore="Autofill" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
