@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         btnNext=findViewById(R.id.btnnext);
         Intent iNext;
         iNext=new Intent(MainActivity.this, SecondActivity.class);
+        iNext.putExtra("title","Home");
+        iNext.putExtra("StudentName","Lavish");
+        iNext.putExtra("RollNo","23");
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
