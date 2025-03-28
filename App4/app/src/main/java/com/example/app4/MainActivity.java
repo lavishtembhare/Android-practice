@@ -82,7 +82,7 @@ int count=0;
                     Toast.makeText(this, "Winner is: " + b5, Toast.LENGTH_SHORT).show();
                     restart();
                 }else if(count==9){
-                    Toast.makeText()
+                    Toast.makeText(this,"Restart",Toast.LENGTH_SHORT).show();
                 }
             }
         }
