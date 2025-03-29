@@ -37,18 +37,18 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/btnTranslate1"
+                android:id="@+id/btnTranslate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/translate" />
 
             <Button
-                android:id="@+id/btnTranslate2"
+                android:id="@+id/btnAlpha"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/translate" />
+                android:text="@string/alpha" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,18 +58,18 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/btnTranslate3"
+                android:id="@+id/btnRotate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/translate" />
+                android:text="@string/rotate" />
 
             <Button
-                android:id="@+id/btnTranslate4"
+                android:id="@+id/btnScale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/translate" />
+                android:text="@string/scale" />
         </LinearLayout>
 
     </LinearLayout>
