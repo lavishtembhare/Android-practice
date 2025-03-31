@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">App7</string>
+    <string name="select_id_proof">Select ID Proof</string>
+    <string name="search_here">Search Here</string>
 </resources>

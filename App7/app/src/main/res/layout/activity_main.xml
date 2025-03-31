@@ -31,7 +31,7 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background"/>
+            android:background="@android:drawable/editbox_background" />
     </LinearLayout>
 
     <!-- Search Input -->
@@ -39,7 +39,7 @@
         android:id="@+id/actxtView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search Here"
+        android:hint="@string/search_here"
         android:textSize="16sp"
         android:padding="10dp"
         android:background="@android:drawable/editbox_background"/>
@@ -48,7 +48,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select ID Proof"
+        android:text="@string/select_id_proof"
         android:textSize="14sp"
         android:textStyle="bold"
         android:paddingTop="8dp"
