@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#C4C5CC"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:src="@drawable/download"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Downloading"
+            android:textSize="26sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Completed"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center"/>
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ok"
+        android:id="@+id/btnOk"
+        android:background="#0067FF"
+        android:textColor="#fff"
+        android:textSize="25sp"/>
+</LinearLayout>
