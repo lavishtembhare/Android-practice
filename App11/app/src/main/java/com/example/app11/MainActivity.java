@@ -5,6 +5,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 import static com.example.app11.R.*;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Show toast with short duration
                 toast.setDuration(LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.END,0,0);
                 toast.show();
             }
         });
