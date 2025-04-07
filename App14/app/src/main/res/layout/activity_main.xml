@@ -12,17 +12,17 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Call"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:id="@+id/btn_call"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Dialer"
         android:textSize="20sp"
         android:textStyle="bold"
         android:id="@+id/btn_dialer"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/btn_email"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +36,6 @@
         android:text="Share"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:id="@+id/btn_email"/>
+        android:id="@+id/btn_share"/>
 
 </LinearLayout>
