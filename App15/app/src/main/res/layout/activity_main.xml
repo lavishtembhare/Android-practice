@@ -12,11 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:name="com.example.app15.AFragment"
         android:id="@+id/frag_1"/>
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:name="com.example.app15.BFragment"
         android:id="@+id/frag_2"/>
         
 
