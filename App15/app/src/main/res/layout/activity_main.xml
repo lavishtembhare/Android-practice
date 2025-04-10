@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+<!--
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,33 @@
         android:layout_weight="1"
         android:name="com.example.app15.BFragment"
         android:id="@+id/frag_2"/>
-        
+        -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnfragA"
+            android:text="Frag A"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnfragB"
+            android:text="Frag B"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnfragC"
+            android:text="Frag C"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"/>
 
 
 </LinearLayout>

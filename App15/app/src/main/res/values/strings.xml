@@ -3,4 +3,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment_a">Hello blank fragment A</string>
     <string name="hello_fragment_b">Hello Fragment B</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment_c">Hello blank fragment C</string>
 </resources>
