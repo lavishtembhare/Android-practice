@@ -2,65 +2,66 @@ package com.example.app15;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AFragment#newInstance} factory method to
- * create an instance of this fragment.
- *
- */
 public class AFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = "AFragment";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    // Argument keys
+    private static final String ARG_NAME = "Argument1";
+    private static final String ARG_AGE = "Argument2";
+    private static final String ARG_DOMAIN = "Argument3";
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AFragment newInstance(String param1, String param2) {
-        AFragment fragment = new AFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    // Member variables
+    private String name;
+    private int age;
+    private String domain;
 
     public AFragment() {
         // Required empty public constructor
+    }
+
+    public static AFragment newInstance(String name, int age, String domain) {
+        AFragment fragment = new AFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_NAME, name);
+        args.putInt(ARG_AGE, age);
+        args.putString(ARG_DOMAIN, domain);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            name = getArguments().getString(ARG_NAME);
+            age = getArguments().getInt(ARG_AGE);
+            domain = getArguments().getString(ARG_DOMAIN);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_a,container,false);
-        TextView textView_a=view.findViewById(R.id.txtFrag);
-        return inflater.inflate(R.layout.fragment_a, container, false);
+        // Inflate the layout once
+        View view = inflater.inflate(R.layout.fragment_a, container, false);
+
+        // Initialize UI components
+        TextView textView_a = view.findViewById(R.id.txtFrag);
+
+        // Set text and log values if arguments are present
+        if (getArguments() != null) {
+            String logMessage = "Name: " + name + ", Age: " + age + ", Domain: " + domain;
+            Log.d(TAG, logMessage);
+            textView_a.setText(logMessage);
+        }
+
+        return view;
     }
 }

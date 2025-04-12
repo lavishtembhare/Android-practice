@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
     public void loadFrag(Fragment fragment, int flag) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putString("Argument1", "Lavish");
+        bundle.putInt("Argument2", 22); // Corrected: pass integer value directly
+        bundle.putString("Argument3", "App Dev");
+        fragment.setArguments(bundle);
 
         if (flag == 0) {
             // Clear the back stack up to and including the root fragment
