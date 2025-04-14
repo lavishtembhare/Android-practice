@@ -58,7 +58,7 @@ public class AFragment extends Fragment {
         // Set text and log values if arguments are present
         if (getArguments() != null) {
             String logMessage = "Name: " + name + ", Age: " + age + ", Domain: " + domain;
-            Log.d(TAG, logMessage);
+            Log.d(TAG, logMessage); //Important
             textView_a.setText(logMessage);
         }
 
