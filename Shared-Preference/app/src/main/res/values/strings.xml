@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Shared-preference</string>
+    <string name="login">Login</string>
 </resources>
