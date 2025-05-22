@@ -84,14 +84,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="12dp"
             android:text="Turn On Bluetooth"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -106,7 +105,7 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="12dp"
             android:text="Make Discoverable"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -121,6 +120,7 @@
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
             android:text="Turn Off Bluetooth"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -133,6 +133,72 @@
 
     </LinearLayout>
 
+    <!-- Paired Devices Section -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Paired Devices"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_text" />
+
+                <Button
+                    android:id="@+id/refreshButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Refresh"
+                    android:textSize="12sp"
+                    android:background="@drawable/button_secondary"
+                    android:textColor="@color/primary_blue"
+                    android:minWidth="0dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pairedDevicesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:scrollbars="vertical" />
+
+            <TextView
+                android:id="@+id/noPairedDevicesText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="No paired devices found\n\nPair devices through your device's Bluetooth settings"
+                android:textSize="14sp"
+                android:textColor="@color/secondary_text"
+                android:gravity="center"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
     <!-- Footer -->
     <TextView
         android:layout_width="match_parent"
@@ -141,6 +207,6 @@
         android:textSize="12sp"
         android:textColor="@color/secondary_text"
         android:gravity="center"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

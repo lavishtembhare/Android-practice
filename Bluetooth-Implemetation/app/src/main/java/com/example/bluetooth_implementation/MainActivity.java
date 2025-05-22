@@ -2,6 +2,7 @@ package com.example.bluetooth_implementation;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,13 +22,18 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,8 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView out;
     private TextView statusText;
-    private Button button1, button2, button3;
+    private TextView noPairedDevicesText;
+    private Button button1, button2, button3, refreshButton;
+    private RecyclerView pairedDevicesRecyclerView;
     private BluetoothAdapter mBluetoothAdapter;
+    private BluetoothDeviceAdapter deviceAdapter;
+    private List<BluetoothDevice> pairedDevicesList;
 
     // Activity Result Launchers for modern Android
     private ActivityResultLauncher<Intent> enableBluetoothLauncher;
@@ -51,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             final String action = intent.getAction();
             if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
                 updateBluetoothStatus();
+            } else if (action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)) {
+                loadPairedDevices();
             }
         }
     };
@@ -74,14 +86,29 @@ public class MainActivity extends AppCompatActivity {
         checkBluetoothPermissions();
         setupClickListeners();
         updateBluetoothStatus();
+        loadPairedDevices();
     }
 
     private void initializeViews() {
         out = findViewById(R.id.out);
         statusText = findViewById(R.id.statusText);
+        noPairedDevicesText = findViewById(R.id.noPairedDevicesText);
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
+        refreshButton = findViewById(R.id.refreshButton);
+        pairedDevicesRecyclerView = findViewById(R.id.pairedDevicesRecyclerView);
+
+        // Setup RecyclerView
+        pairedDevicesList = new ArrayList<>();
+        deviceAdapter = new BluetoothDeviceAdapter(pairedDevicesList, this);
+        pairedDevicesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        pairedDevicesRecyclerView.setAdapter(deviceAdapter);
+
+        // Set device click listener
+        deviceAdapter.setOnDeviceClickListener(device -> {
+            showDeviceInfo(device);
+        });
     }
 
     private void initializeBluetoothAdapter() {
@@ -179,6 +206,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadPairedDevices();
+                showToast("🔄 Refreshing paired devices list");
+            }
+        });
+
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
-            @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
             @Override
             public void onClick(View v) {
                 if (mBluetoothAdapter == null) {
@@ -261,11 +295,87 @@ public class MainActivity extends AppCompatActivity {
             button1.setEnabled(true);
             button2.setEnabled(true);
             button3.setEnabled(true);
+            refreshButton.setEnabled(true);
+            loadPairedDevices();
         } else {
             statusText.setText("❌ Bluetooth is OFF");
             button1.setEnabled(true);
             button2.setEnabled(false);
             button3.setEnabled(false);
+            refreshButton.setEnabled(false);
+            pairedDevicesList.clear();
+            deviceAdapter.notifyDataSetChanged();
+            updatePairedDevicesVisibility();
+        }
+    }
+
+    private void loadPairedDevices() {
+        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+            pairedDevicesList.clear();
+            deviceAdapter.notifyDataSetChanged();
+            updatePairedDevicesVisibility();
+            return;
+        }
+
+        if (!hasBluetoothPermission()) {
+            showToast("❌ Bluetooth permissions required");
+            return;
+        }
+
+        try {
+            Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+            pairedDevicesList.clear();
+
+            if (pairedDevices.size() > 0) {
+                pairedDevicesList.addAll(pairedDevices);
+                out.setText("✅ Found " + pairedDevices.size() + " paired device(s)");
+            } else {
+                out.setText("ℹ️ No paired devices found");
+            }
+
+            deviceAdapter.notifyDataSetChanged();
+            updatePairedDevicesVisibility();
+
+        } catch (SecurityException e) {
+            showToast("❌ Permission denied to access paired devices");
+            out.setText("❌ Cannot access paired devices - permission denied");
+        }
+    }
+
+    private void updatePairedDevicesVisibility() {
+        if (pairedDevicesList.isEmpty()) {
+            pairedDevicesRecyclerView.setVisibility(View.GONE);
+            noPairedDevicesText.setVisibility(View.VISIBLE);
+        } else {
+            pairedDevicesRecyclerView.setVisibility(View.VISIBLE);
+            noPairedDevicesText.setVisibility(View.GONE);
+        }
+    }
+
+    private void showDeviceInfo(BluetoothDevice device) {
+        try {
+            StringBuilder info = new StringBuilder();
+            info.append("Device: ").append(device.getName() != null ? device.getName() : "Unknown");
+            info.append("\nAddress: ").append(device.getAddress());
+            info.append("\nBond State: ");
+
+            switch (device.getBondState()) {
+                case BluetoothDevice.BOND_BONDED:
+                    info.append("Paired");
+                    break;
+                case BluetoothDevice.BOND_BONDING:
+                    info.append("Pairing...");
+                    break;
+                default:
+                    info.append("Not Paired");
+                    break;
+            }
+
+            out.setText(info.toString());
+            showToast("ℹ️ Device info displayed");
+
+        } catch (SecurityException e) {
+            showToast("❌ Cannot access device information");
         }
     }
 
@@ -283,7 +393,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // Register receiver for Bluetooth state changes
-        IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+        filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(bluetoothStateReceiver, filter);
         updateBluetoothStatus();
     }
@@ -307,9 +419,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
 }
