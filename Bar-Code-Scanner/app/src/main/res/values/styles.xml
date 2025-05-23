@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/accent_color</item>
+        <item name="colorSecondaryVariant">@color/accent_dark</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@color/primary_color</item>
+    </style>
+
+    <!-- Splash screen theme -->
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/gradient_background</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- Scanner activity theme -->
+    <style name="ScannerTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- Custom button style -->
+    <style name="CustomButton" parent="Widget.Material3.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/primary_color</item>
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="elevation">8dp</item>
+        <item name="iconTint">@android:color/white</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">12dp</item>
+    </style>
+
+    <!-- Custom text input style -->
+    <style name="CustomTextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/primary_color</item>
+        <item name="hintTextColor">@color/primary_color</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+    </style>
+
+</resources>

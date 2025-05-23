@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom attributes for scanning view -->
+    <declare-styleable name="ScannerView">
+        <attr name="frameColor" format="color" />
+        <attr name="frameWidth" format="dimension" />
+        <attr name="frameHeight" format="dimension" />
+        <attr name="animationDuration" format="integer" />
+    </declare-styleable>
+
+    <!-- Custom attributes for result display -->
+    <declare-styleable name="ResultView">
+        <attr name="resultBackgroundColor" format="color" />
+        <attr name="resultTextColor" format="color" />
+        <attr name="resultCornerRadius" format="dimension" />
+    </declare-styleable>
+</resources>

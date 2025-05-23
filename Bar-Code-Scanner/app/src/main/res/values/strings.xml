@@ -1,5 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Bar-Code-Scanner</string>
+    <!-- App Info -->
+    <string name="app_name">QR Scanner</string>
+    <string name="app_title">QR Code Scanner</string>
+    <string name="app_subtitle">Scan QR codes and barcodes instantly</string>
+    <string name="app_logo">App Logo</string>
+
+    <!-- Main Activity -->
     <string name="scan_barcode">Scan Barcode</string>
+    <string name="scan_instruction">Point your camera at a QR code or barcode to scan</string>
+
+    <!-- Scanning Activity -->
+    <string name="scan_barcode_title">Scan Barcode</string>
+    <string name="scan_result_label">Scan Result:</string>
+    <string name="no_barcode_detected">No barcode detected</string>
+    <string name="scan_instruction_detail">Align the barcode within the frame</string>
+    <string name="action_button_default">Open Link</string>
+
+    <!-- Email Activity -->
+    <string name="compose_email_title">Compose Email</string>
+    <string name="email_address_placeholder">recipient@example.com</string>
+    <string name="subject_hint">Email Subject</string>
+    <string name="body_hint">Write your message here...</string>
     <string name="send_email">Send Email</string>
+
+    <!-- Common Actions -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="retry">Retry</string>
+
+    <!-- Permissions -->
+    <string name="camera_permission_required">Camera permission is required to scan barcodes</string>
+    <string name="grant_permission">Grant Permission</string>
+
+    <!-- Error Messages -->
+    <string name="error_camera_unavailable">Camera is not available</string>
+    <string name="error_scan_failed">Failed to scan barcode</string>
+    <string name="error_email_failed">Failed to send email</string>
 </resources>
